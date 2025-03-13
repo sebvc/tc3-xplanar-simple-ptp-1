@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <POU Name="MAIN" Id="{84712274-d540-470e-b6d0-bbe39771fa28}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	//Circle Stuff
+	rDeg		: LREAL; 			//Current Angle in Degrees
+	rIncr		: LREAL := 1.0; 	//rate of increse in angle
+	rOmega		: LREAL := 1.745;	//Angular velocity (rad/s), based on 1 degree per 10ms
+	rSin		: LREAL;			//Output of sin
+	rCos		: LREAL;			//Output of cos
+	Radius		: LREAL := 100;		//radius
+
+	//Initialization
+	Init	: BOOL := TRUE;
+
+	
+	//Planar Stuff
+	//Commands/feedback
+	ReadyUp				: BOOL;		//Turn this bool on manually
+	Ready				: BOOL;		//Wait for this bool to turn on programatically
+	RunCircles			: BOOL;		//THEN Turn this bool on to start going in circles. 
+	
+	//Functions
+	Mover				: ARRAY [0..1] OF MC_PlanarMover;
+	Feedback			:  ARRAY [0..1] OF MC_PlanarFeedback;
+	//positions
+	Position			: ARRAY [0..4] OF PositionXYC;
+	
+
+	//Options
+	Constraint			: DynamicConstraint_PathXYZ;
+	Options				: ST_MoveToPositionOptions;
+
+	//Values used during init steps
+	Velocity			: MC_LREAL := 1000;
+	Acceleration		: MC_LREAL := 6_000;
+	Deceleration		: MC_LREAL := 6_000;
+	Jerk				: MC_LREAL := 50_000;
+	//Values caculated for the motion in external set point generation mode 
+	PositionVector		: MoverVector;
+	VelocityVector		: MoverVector;
+	AccelerationVector	: MoverVector;
+	
+	//StateMachine
+	XPlanarState		: INT;
+	ErrorOccuredInState	: INT;
+	
+	INeedABreakpointHere: INT;
+	i: INT;
+	all_done: BOOL;
+	InitTimer: TON;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+All sample code provided by Beckhoff Automation LLC are for illustrative purposes only and are provided “as is” and without any warranties, express or implied. 
+Actual implementations in applications will vary significantly. 
+Beckhoff Automation LLC shall have no liability for, and does not waive any rights in relation to, any code samples that it provides or the use of such code samples for any purpose.
+*)
+
+InitTimer(IN:= TRUE, PT:= T#3S, Q=> , ET=> );
+
+
+//Circle Caculation Action
+
+FOR i:=0 TO 1 DO
+	Mover[i].Update();
+	Feedback[i].Update();
+END_FOR
+
+
+CASE XPlanarState OF 
+	0: //wait for ReadyUp command (just start)
+	IF InitTimer.Q THEN
+		XPlanarState := 10;
+		InitTimer(in:=FALSE);
+	END_IF
+	
+	
+	10: //Enable Mover
+	FOR i:=0 TO 1 DO
+		Mover[i].Enable(Feedback[i]);
+	END_FOR
+	
+	XPlanarState := 20;
+	
+	20: //Wait for mover enable
+	all_done:=TRUE;
+	FOR i:=0 TO 1 DO
+		IF NOT Feedback[i].Done THEN
+			all_done:=FALSE;
+		END_IF
+		IF Feedback[i].Error THEN 
+			ErrorOccuredInState := XPlanarState;
+			XPlanarState := 999;
+		END_IF
+	END_FOR
+	IF all_done THEN
+		XPlanarState := 30;
+	END_IF
+	
+	
+	30://Move mover to the place from which the circle starts
+	//Setup inputs
+	
+	Position[0].SetValuesXYC(60,60,0);
+	Position[1].SetValuesXYC(180,60,0);
+	Position[2].SetValuesXYC(180,420,0);
+	Position[3].SetValuesXYC(60,420,0);
+	Position[4].SetValuesXYC(120,240,0);//center
+	
+	//Position.SetValuesXYC((240+rCos), (240+rSin), 2);
+	Constraint.SetValuesVADJ(Velocity, Acceleration, Deceleration, Jerk);
+	Options.useOrientation := TRUE;
+	//MOVE!!!!!
+
+	Mover[0].MoveToPosition(Feedback[0], Position[0], Constraint, Options); // M0 to bottom right
+	Mover[1].MoveToPosition(Feedback[1], Position[2], Constraint, Options);// M1 to top left
+
+	
+	XPlanarState := 40;
+
+	40://Wait for mover to arrive at position
+	all_done:=TRUE;
+	FOR i:=0 TO 1 DO
+		IF NOT Feedback[i].Done THEN
+			all_done:=FALSE;
+		END_IF
+		IF Feedback[i].Error THEN 
+			ErrorOccuredInState := XPlanarState;
+			XPlanarState := 999;
+		END_IF
+	END_FOR
+	IF all_done THEN
+		XPlanarState := XPlanarState+10;
+	END_IF
+	
+	50:
+	Mover[0].MoveToPosition(Feedback[0], Position[1], Constraint, Options);
+	Mover[1].MoveToPosition(Feedback[1], Position[3], Constraint, Options);
+	XPlanarState := XPlanarState+10;
+	
+	60://Wait for mover to arrive at position
+	all_done:=TRUE;
+	FOR i:=0 TO 1 DO
+		IF NOT Feedback[i].Done THEN
+			all_done:=FALSE;
+		END_IF
+		IF Feedback[i].Error THEN 
+			ErrorOccuredInState := XPlanarState;
+			XPlanarState := 999;
+		END_IF
+	END_FOR
+	IF all_done THEN
+		XPlanarState := XPlanarState+10;
+	END_IF
+	
+	70:
+	Mover[0].MoveToPosition(Feedback[0], Position[2], Constraint, Options);
+	Mover[1].MoveToPosition(Feedback[1], Position[0], Constraint, Options);
+	XPlanarState := XPlanarState+10;
+	
+	80://Wait for mover to arrive at position
+	all_done:=TRUE;
+	FOR i:=0 TO 1 DO
+		IF NOT Feedback[i].Done THEN
+			all_done:=FALSE;
+		END_IF
+		IF Feedback[i].Error THEN 
+			ErrorOccuredInState := XPlanarState;
+			XPlanarState := 999;
+		END_IF
+	END_FOR
+	IF all_done THEN
+		XPlanarState := XPlanarState+10;
+	END_IF
+	
+	90:
+	Mover[0].MoveToPosition(Feedback[0], Position[3], Constraint, Options);
+	Mover[1].MoveToPosition(Feedback[1], Position[1], Constraint, Options);
+	XPlanarState := XPlanarState+10;
+	
+	100://Wait for mover to arrive at position
+	all_done:=TRUE;
+	FOR i:=0 TO 1 DO
+		IF NOT Feedback[i].Done THEN
+			all_done:=FALSE;
+		END_IF
+		IF Feedback[i].Error THEN 
+			ErrorOccuredInState := XPlanarState;
+			XPlanarState := 999;
+		END_IF
+	END_FOR
+	IF all_done THEN
+		XPlanarState := 30;
+	END_IF
+	
+	(*
+	110:
+	Mover[0].MoveToPosition(Feedback[0], Position[0], Constraint, Options);
+	Mover[1].MoveToPosition(Feedback[1], Position[2], Constraint, Options);
+	XPlanarState := XPlanarState+10;
+	
+	120://Wait for mover to arrive at position
+	all_done:=TRUE;
+	FOR i:=0 TO 1 DO
+		IF NOT Feedback[i].Done THEN
+			all_done:=FALSE;
+		END_IF
+		IF Feedback[i].Error THEN 
+			ErrorOccuredInState := XPlanarState;
+			XPlanarState := 999;
+		END_IF
+	END_FOR
+	IF all_done THEN
+		XPlanarState := XPlanarState+10;
+	END_IF
+	*)
+(*	
+50://Wait for Run Circles
+	Ready:= TRUE;
+	IF RunCircles THEN
+		Mover.StartExternalSetpointGeneration(0, 0);
+		XPlanarState:= 60;
+	END_IF
+	
+	60: //Run Circles
+	PositionVector.x := 240+rCos;
+	PositionVector.y := 240+rSin;
+	
+	VelocityVector.x		:= -Radius * rOmega * SIN(DEG_TO_RAD(rDeg));
+	VelocityVector.y		:= -Radius * rOmega * COS(DEG_TO_RAD(rDeg));
+	
+	AccelerationVector.x	:= -Radius * (rOmega * rOmega) * COS(DEG_TO_RAD(rDeg));
+	AccelerationVector.y	:= -Radius * (rOmega * rOmega) * SIN(DEG_TO_RAD(rDeg));
+	
+	Mover.SetExternalSetpoint(PositionVector, VelocityVector, AccelerationVector);
+	
+	
+	*)
+	999://Wait Here for troubleshooting in case of error
+	
+END_CASE]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

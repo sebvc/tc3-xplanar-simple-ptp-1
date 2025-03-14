@@ -22,8 +22,8 @@ VAR
 	RunCircles			: BOOL;		//THEN Turn this bool on to start going in circles. 
 	
 	//Functions
-	Mover				: ARRAY [0..1] OF MC_PlanarMover;
-	Feedback			:  ARRAY [0..1] OF MC_PlanarFeedback;
+	Mover				: ARRAY [1..MOVER_NUM] OF MC_PlanarMover;
+	Feedback			:  ARRAY [1..MOVER_NUM] OF MC_PlanarFeedback;
 	//positions
 	Position			: ARRAY [0..4] OF PositionXYC;
 	
@@ -50,8 +50,12 @@ VAR
 	i: INT;
 	all_done: BOOL;
 	InitTimer: TON;
+
 END_VAR
-]]></Declaration>
+
+VAR CONSTANT
+	MOVER_NUM: INT := 1;
+END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[(*
 All sample code provided by Beckhoff Automation LLC are for illustrative purposes only and are provided “as is” and without any warranties, express or implied. 
@@ -64,12 +68,12 @@ InitTimer(IN:= TRUE, PT:= T#3S, Q=> , ET=> );
 
 //Circle Caculation Action
 
-FOR i:=0 TO 1 DO
+FOR i:=1 TO MOVER_NUM DO
 	Mover[i].Update();
 	Feedback[i].Update();
 END_FOR
 
-
+mover[1].MCTOPLC.ACT.ActPos.c;
 CASE XPlanarState OF 
 	0: //wait for ReadyUp command (just start)
 	IF InitTimer.Q THEN
@@ -79,7 +83,7 @@ CASE XPlanarState OF
 	
 	
 	10: //Enable Mover
-	FOR i:=0 TO 1 DO
+	FOR i:=1 TO MOVER_NUM DO
 		Mover[i].Enable(Feedback[i]);
 	END_FOR
 	
@@ -87,7 +91,7 @@ CASE XPlanarState OF
 	
 	20: //Wait for mover enable
 	all_done:=TRUE;
-	FOR i:=0 TO 1 DO
+	FOR i:=1 TO MOVER_NUM DO
 		IF NOT Feedback[i].Done THEN
 			all_done:=FALSE;
 		END_IF
@@ -109,21 +113,22 @@ CASE XPlanarState OF
 	Position[2].SetValuesXYC(180,420,0);
 	Position[3].SetValuesXYC(60,420,0);
 	Position[4].SetValuesXYC(120,240,0);//center
+	Position[5].SetValuesXYC(120,240,720);//center
 	
 	//Position.SetValuesXYC((240+rCos), (240+rSin), 2);
 	Constraint.SetValuesVADJ(Velocity, Acceleration, Deceleration, Jerk);
 	Options.useOrientation := TRUE;
 	//MOVE!!!!!
 
-	Mover[0].MoveToPosition(Feedback[0], Position[0], Constraint, Options); // M0 to bottom right
-	Mover[1].MoveToPosition(Feedback[1], Position[2], Constraint, Options);// M1 to top left
+	Mover[1].MoveToPosition(Feedback[1], Position[0], Constraint, Options); // M1 to bottom right
+	//Mover[2].MoveToPosition(Feedback[2], Position[2], Constraint, Options);// M2 to top left
 
 	
 	XPlanarState := 40;
 
 	40://Wait for mover to arrive at position
 	all_done:=TRUE;
-	FOR i:=0 TO 1 DO
+	FOR i:=1 TO MOVER_NUM DO
 		IF NOT Feedback[i].Done THEN
 			all_done:=FALSE;
 		END_IF
@@ -137,13 +142,13 @@ CASE XPlanarState OF
 	END_IF
 	
 	50:
-	Mover[0].MoveToPosition(Feedback[0], Position[1], Constraint, Options);
-	Mover[1].MoveToPosition(Feedback[1], Position[3], Constraint, Options);
+	Mover[1].MoveToPosition(Feedback[1], Position[1], Constraint, Options);
+	//Mover[2].MoveToPosition(Feedback[2], Position[3], Constraint, Options);
 	XPlanarState := XPlanarState+10;
 	
 	60://Wait for mover to arrive at position
 	all_done:=TRUE;
-	FOR i:=0 TO 1 DO
+	FOR i:=1 TO MOVER_NUM DO
 		IF NOT Feedback[i].Done THEN
 			all_done:=FALSE;
 		END_IF
@@ -157,13 +162,13 @@ CASE XPlanarState OF
 	END_IF
 	
 	70:
-	Mover[0].MoveToPosition(Feedback[0], Position[2], Constraint, Options);
-	Mover[1].MoveToPosition(Feedback[1], Position[0], Constraint, Options);
+	Mover[1].MoveToPosition(Feedback[1], Position[2], Constraint, Options);
+	//Mover[2].MoveToPosition(Feedback[2], Position[0], Constraint, Options);
 	XPlanarState := XPlanarState+10;
 	
 	80://Wait for mover to arrive at position
 	all_done:=TRUE;
-	FOR i:=0 TO 1 DO
+	FOR i:=1 TO MOVER_NUM DO
 		IF NOT Feedback[i].Done THEN
 			all_done:=FALSE;
 		END_IF
@@ -177,13 +182,13 @@ CASE XPlanarState OF
 	END_IF
 	
 	90:
-	Mover[0].MoveToPosition(Feedback[0], Position[3], Constraint, Options);
-	Mover[1].MoveToPosition(Feedback[1], Position[1], Constraint, Options);
+	Mover[1].MoveToPosition(Feedback[1], Position[3], Constraint, Options);
+	//Mover[2].MoveToPosition(Feedback[2], Position[1], Constraint, Options);
 	XPlanarState := XPlanarState+10;
 	
 	100://Wait for mover to arrive at position
 	all_done:=TRUE;
-	FOR i:=0 TO 1 DO
+	FOR i:=1 TO MOVER_NUM DO
 		IF NOT Feedback[i].Done THEN
 			all_done:=FALSE;
 		END_IF
@@ -198,13 +203,13 @@ CASE XPlanarState OF
 	
 	(*
 	110:
-	Mover[0].MoveToPosition(Feedback[0], Position[0], Constraint, Options);
-	Mover[1].MoveToPosition(Feedback[1], Position[2], Constraint, Options);
+	Mover[1].MoveToPosition(Feedback[1], Position[0], Constraint, Options);
+	Mover[2].MoveToPosition(Feedback[2], Position[2], Constraint, Options);
 	XPlanarState := XPlanarState+10;
 	
 	120://Wait for mover to arrive at position
 	all_done:=TRUE;
-	FOR i:=0 TO 1 DO
+	FOR i:=1 TO MOVER_NUM DO
 		IF NOT Feedback[i].Done THEN
 			all_done:=FALSE;
 		END_IF

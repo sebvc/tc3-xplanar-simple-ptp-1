@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <Task Name="FastPlcTask" Id="{d0312248-e53c-4742-9b19-309bd70dfbda}">
+    <!--CycleTime in micro seconds.-->
+    <CycleTime>2000</CycleTime>
+    <Priority>21</Priority>
+    <PouCall>
+      <Name>ScopePlotting</Name>
+    </PouCall>
+    <TaskFBGuid>{60ac7c4f-1100-4820-8bbe-0f107934f858}</TaskFBGuid>
+    <Fb_init>{605b26ad-04a9-489f-9945-37dd066f5dcd}</Fb_init>
+    <Fb_exit>{016d4434-f97e-4d13-b95e-dc58cf90ce4c}</Fb_exit>
+    <CycleUpdate>{d8d5b229-a36b-413d-b869-6bd260d8f095}</CycleUpdate>
+    <PostCycleUpdate>{f6b67d72-66ba-4f50-a264-ba7f7ba82bb2}</PostCycleUpdate>
+  </Task>
+</TcPlcObject>

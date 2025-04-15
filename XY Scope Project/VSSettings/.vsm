@@ -5,34 +5,46 @@
   <Children>
     <Node>
       <Title>XY Scope Project</Title>
-      <Expanded>False</Expanded>
+      <Expanded>True</Expanded>
       <FileName>C:\Users\Administrator\Documents\GitRepos\sebvc\tc3-xplanar-simple-ptp-1\XY Scope Project\XY Scope Project.tcscopex</FileName>
       <Children>
         <Node>
           <Title>DataPool</Title>
-          <Expanded>False</Expanded>
+          <Expanded>True</Expanded>
           <FileName></FileName>
           <Children>
             <Node>
-              <Title>M1x</Title>
+              <Title>Mover4220_1.ActPos.a</Title>
               <Expanded>False</Expanded>
               <FileName></FileName>
               <Children />
             </Node>
             <Node>
-              <Title>M1x-McTask-McToPlc</Title>
+              <Title>Mover4220_1.ActPos.b</Title>
               <Expanded>False</Expanded>
               <FileName></FileName>
               <Children />
             </Node>
             <Node>
-              <Title>M1y</Title>
+              <Title>Mover4220_1.ActPos.c</Title>
               <Expanded>False</Expanded>
               <FileName></FileName>
               <Children />
             </Node>
             <Node>
-              <Title>M1y-McTask-McToPlc</Title>
+              <Title>Mover4220_1.ActPos.x</Title>
+              <Expanded>False</Expanded>
+              <FileName></FileName>
+              <Children />
+            </Node>
+            <Node>
+              <Title>Mover4220_1.ActPos.y</Title>
+              <Expanded>False</Expanded>
+              <FileName></FileName>
+              <Children />
+            </Node>
+            <Node>
+              <Title>Mover4220_1.ActPos.z</Title>
               <Expanded>False</Expanded>
               <FileName></FileName>
               <Children />
@@ -41,27 +53,27 @@
         </Node>
         <Node>
           <Title>XY Chart</Title>
-          <Expanded>False</Expanded>
+          <Expanded>True</Expanded>
           <FileName></FileName>
           <Children>
             <Node>
               <Title>Axis Group</Title>
-              <Expanded>False</Expanded>
+              <Expanded>True</Expanded>
               <FileName></FileName>
               <Children>
                 <Node>
-                  <Title>Mover1-PLC</Title>
-                  <Expanded>False</Expanded>
+                  <Title>Mover4220_1.ActPos.XY</Title>
+                  <Expanded>True</Expanded>
                   <FileName></FileName>
                   <Children>
                     <Node>
-                      <Title>X: M1x</Title>
+                      <Title>X: Mover4220_1.ActPos.x</Title>
                       <Expanded>False</Expanded>
                       <FileName></FileName>
                       <Children />
                     </Node>
                     <Node>
-                      <Title>Y: M1y</Title>
+                      <Title>Y: Mover4220_1.ActPos.y</Title>
                       <Expanded>False</Expanded>
                       <FileName></FileName>
                       <Children />
@@ -69,38 +81,13 @@
                   </Children>
                 </Node>
                 <Node>
-                  <Title>Mover1-MC</Title>
-                  <Expanded>False</Expanded>
-                  <FileName></FileName>
-                  <Children>
-                    <Node>
-                      <Title>X: M1x-McTask-McToPlc</Title>
-                      <Expanded>False</Expanded>
-                      <FileName></FileName>
-                      <Children />
-                    </Node>
-                    <Node>
-                      <Title>Y: M1y-McTask-McToPlc</Title>
-                      <Expanded>False</Expanded>
-                      <FileName></FileName>
-                      <Children />
-                    </Node>
-                  </Children>
-                </Node>
-                <Node>
-                  <Title>M1 DynamicPoints</Title>
+                  <Title>Angular Shape</Title>
                   <Expanded>False</Expanded>
                   <FileName></FileName>
                   <Children />
                 </Node>
                 <Node>
-                  <Title>M1 DynOffset</Title>
-                  <Expanded>False</Expanded>
-                  <FileName></FileName>
-                  <Children />
-                </Node>
-                <Node>
-                  <Title>TILES</Title>
+                  <Title>Tiles</Title>
                   <Expanded>False</Expanded>
                   <FileName></FileName>
                   <Children />

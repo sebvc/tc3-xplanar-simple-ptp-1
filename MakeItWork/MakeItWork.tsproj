@@ -12595,7 +12595,7 @@
 		</Motion>
 		<Plc>
 			<Project GUID="{1BC788B6-F295-45D5-81ED-04A2C02651AE}" Name="Untitled1" PrjFilePath="Untitled1\Untitled1.plcproj" TmcFilePath="Untitled1\Untitled1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{23FB20CF-3D07-5255-2CC3-350387487A66}" TmcPath="Untitled1\Untitled1.tmc">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{28984126-304C-FA2E-AA03-E3C0EDE3B405}" TmcPath="Untitled1\Untitled1.tmc">
 					<Name>Untitled1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="2" AreaNo="1">
@@ -12640,9 +12640,19 @@
 							<Priority>20</Priority>
 							<CycleTime>10000000</CycleTime>
 						</Context>
+						<Context>
+							<Id>1</Id>
+							<Name>FastPlcTask</Name>
+							<ManualConfig>
+								<OTCID>#x02010080</OTCID>
+							</ManualConfig>
+							<Priority>21</Priority>
+							<CycleTime>2000000</CycleTime>
+						</Context>
 					</Contexts>
 					<TaskPouOids>
 						<TaskPouOid Prio="20" OTCID="#x08502001"/>
+						<TaskPouOid Prio="21" OTCID="#x08502002"/>
 					</TaskPouOids>
 				</Instance>
 			</Project>

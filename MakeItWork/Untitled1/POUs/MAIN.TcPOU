@@ -25,7 +25,7 @@ VAR
 	Mover				: ARRAY [1..MOVER_NUM] OF MC_PlanarMover;
 	Feedback			:  ARRAY [1..MOVER_NUM] OF MC_PlanarFeedback;
 	//positions
-	Position			: ARRAY [0..4] OF PositionXYC;
+	Position			: ARRAY [0..10] OF PositionXYC;
 	
 
 	//Options

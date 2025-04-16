@@ -54,7 +54,7 @@ VAR
 END_VAR
 
 VAR CONSTANT
-	MOVER_NUM: INT := 1;
+	MOVER_NUM: INT := 2;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[(*
@@ -62,7 +62,7 @@ All sample code provided by Beckhoff Automation LLC are for illustrative purpose
 Actual implementations in applications will vary significantly. 
 Beckhoff Automation LLC shall have no liability for, and does not waive any rights in relation to, any code samples that it provides or the use of such code samples for any purpose.
 *)
-
+ScopePlotting();
 InitTimer(IN:= TRUE, PT:= T#3S, Q=> , ET=> );
 
 
@@ -121,8 +121,8 @@ CASE XPlanarState OF
 	//MOVE!!!!!
 
 	Mover[1].MoveToPosition(Feedback[1], Position[0], Constraint, Options); // M1 to bottom right
-	//Mover[2].MoveToPosition(Feedback[2], Position[2], Constraint, Options);// M2 to top left
-
+	Mover[2].MoveToPosition(Feedback[2], Position[2], Constraint, Options);// M2 to top left
+	
 	
 	XPlanarState := 40;
 
@@ -143,7 +143,7 @@ CASE XPlanarState OF
 	
 	50:
 	Mover[1].MoveToPosition(Feedback[1], Position[1], Constraint, Options);
-	//Mover[2].MoveToPosition(Feedback[2], Position[3], Constraint, Options);
+	Mover[2].MoveToPosition(Feedback[2], Position[3], Constraint, Options);
 	XPlanarState := XPlanarState+10;
 	
 	60://Wait for mover to arrive at position
@@ -163,7 +163,7 @@ CASE XPlanarState OF
 	
 	70:
 	Mover[1].MoveToPosition(Feedback[1], Position[2], Constraint, Options);
-	//Mover[2].MoveToPosition(Feedback[2], Position[0], Constraint, Options);
+	Mover[2].MoveToPosition(Feedback[2], Position[0], Constraint, Options);
 	XPlanarState := XPlanarState+10;
 	
 	80://Wait for mover to arrive at position
@@ -183,7 +183,7 @@ CASE XPlanarState OF
 	
 	90:
 	Mover[1].MoveToPosition(Feedback[1], Position[3], Constraint, Options);
-	//Mover[2].MoveToPosition(Feedback[2], Position[1], Constraint, Options);
+	Mover[2].MoveToPosition(Feedback[2], Position[1], Constraint, Options);
 	XPlanarState := XPlanarState+10;
 	
 	100://Wait for mover to arrive at position

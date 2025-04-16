@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="sMoverPosition" Id="{7524b54d-9c54-45a0-bc79-4a124e78eea7}">
+    <Declaration><![CDATA[TYPE sMoverPosition :
+STRUCT
+	x : LREAL;
+	y : LREAL;
+	z : LREAL;
+	a : LREAL;
+	b : LREAL;
+	c : LREAL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

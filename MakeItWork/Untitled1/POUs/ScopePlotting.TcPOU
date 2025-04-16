@@ -3,10 +3,70 @@
   <POU Name="ScopePlotting" Id="{cf0c22f8-e2f6-4c0b-9aeb-d5cdc3e4c0e2}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM ScopePlotting
 VAR
+	aMoverPos AT %I* : ARRAY[1..Main.MOVER_NUM] OF sMoverPosition;
+	aMoverPts : ARRAY[1..MAIN.MOVER_NUM] OF sMoverPoints;
+	i: INT;
 END_VAR
-]]></Declaration>
+
+
+VAR CONSTANT
+	diag_L: LREAL := LREAL#113*SQRT(LREAL#2)/LREAL#2;
+END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[]]></ST>
+      <ST><![CDATA[FOR i:=1 TO MAIN.MOVER_NUM DO
+	MAIN.Mover[i].Update();
+	MAIN.Feedback[i].Update();
+END_FOR
+
+
+FOR i:=1 TO MAIN.MOVER_NUM DO
+	aMoverPts[i].BLx := MAIN.Mover[1].MCTOPLC.ACT.ActPos.x + diag_L*SIN(3*PI/LREAL#4 + 1 *PI/LREAL#2 - Main.Mover[i].MCTOPLC.ACT.ActPos.c);
+	aMoverPts[i].BLy := MAIN.Mover[1].MCTOPLC.ACT.ActPos.y + diag_L*COS(3*PI/LREAL#4 + 1 *PI/LREAL#2 - Main.Mover[i].MCTOPLC.ACT.ActPos.c);
+	                                                                               
+	aMoverPts[i].TLx := MAIN.Mover[1].MCTOPLC.ACT.ActPos.x + diag_L*SIN(3*PI/LREAL#4 + 2 *PI/LREAL#2 - Main.Mover[i].MCTOPLC.ACT.ActPos.c);
+	aMoverPts[i].TLy := MAIN.Mover[1].MCTOPLC.ACT.ActPos.y + diag_L*COS(3*PI/LREAL#4 + 2 *PI/LREAL#2 - Main.Mover[i].MCTOPLC.ACT.ActPos.c);
+	                                                                               
+	aMoverPts[i].TRx := MAIN.Mover[1].MCTOPLC.ACT.ActPos.x + diag_L*SIN(3*PI/LREAL#4 + 3 *PI/LREAL#2 - Main.Mover[i].MCTOPLC.ACT.ActPos.c);
+	aMoverPts[i].TRy := MAIN.Mover[1].MCTOPLC.ACT.ActPos.y + diag_L*COS(3*PI/LREAL#4 + 3 *PI/LREAL#2 - Main.Mover[i].MCTOPLC.ACT.ActPos.c);
+	                                                                               
+	aMoverPts[i].BRx := MAIN.Mover[1].MCTOPLC.ACT.ActPos.x + diag_L*SIN(3*PI/LREAL#4 + 4 *PI/LREAL#2 - Main.Mover[i].MCTOPLC.ACT.ActPos.c);
+	aMoverPts[i].BRy := MAIN.Mover[1].MCTOPLC.ACT.ActPos.y + diag_L*COS(3*PI/LREAL#4 + 4 *PI/LREAL#2 - Main.Mover[i].MCTOPLC.ACT.ActPos.c);
+	
+END_FOR
+
+(*
+FOR i:=1 TO MAIN.MOVER_NUM DO
+	aMoverPts[i].BLx := aMoverPos[i].x + diag_L*SIN(3*PI/LREAL#4 + 1 *PI/LREAL#2 - aMoverPos[i].c);
+	aMoverPts[i].BLy := aMoverPos[i].y + diag_L*COS(3*PI/LREAL#4 + 1 *PI/LREAL#2 - aMoverPos[i].c);
+	
+	aMoverPts[i].TLx := aMoverPos[i].x + diag_L*SIN(3*PI/LREAL#4 + 2 *PI/LREAL#2 - aMoverPos[i].c);
+	aMoverPts[i].TLy := aMoverPos[i].y + diag_L*COS(3*PI/LREAL#4 + 2 *PI/LREAL#2 - aMoverPos[i].c);
+	
+	aMoverPts[i].TRx := aMoverPos[i].x + diag_L*SIN(3*PI/LREAL#4 + 3 *PI/LREAL#2 - aMoverPos[i].c);
+	aMoverPts[i].TRy := aMoverPos[i].y + diag_L*COS(3*PI/LREAL#4 + 3 *PI/LREAL#2 - aMoverPos[i].c);
+	
+	aMoverPts[i].BRx := aMoverPos[i].x + diag_L*SIN(3*PI/LREAL#4 + 4 *PI/LREAL#2 - aMoverPos[i].c);
+	aMoverPts[i].BRy := aMoverPos[i].y + diag_L*COS(3*PI/LREAL#4 + 4 *PI/LREAL#2 - aMoverPos[i].c);
+	
+END_FOR
+*)
+
+(*
+Formula for Square points in reference to the center point (x_1,y_1) and the angle (c)
+l is diagonal distance from center to corner square point l:= 113*sqrt(2)/2
+[BL,TL,TR,BR]:=[1,2,3,4] respectively
+
+
+# (x_1 + l * sin(3π/4 + [1..4]*π/2 - c),
+#  y_1 + l * cos(3π/4 + [1..4]*π/2 - c))
+
+OR
+# (x1 + l * sin(3 * pi / 4 + i * pi / 2 - c ),
+#  y1 + l * cos(3 * pi / 4 + i * pi / 2 - c ))
+# where i := [1, 2, 3, 4]
+
+*)
+	]]></ST>
     </Implementation>
   </POU>
 </TcPlcObject>

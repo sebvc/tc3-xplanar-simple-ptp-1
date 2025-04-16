@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1">
+  <DUT Name="sMoverPoints" Id="{63b4494e-93ea-4e38-8281-5a5f3506e2eb}">
+    <Declaration><![CDATA[TYPE sMoverPoints :
+STRUCT
+	BLx : LREAL; // Bottom Left x
+	BLy: LREAL; // Bottom Left y
+	BRx : LREAL; // Bottom Right x
+	BRy : LREAL; // Bottom Right y
+	TRx : LREAL; // Top Right x
+	TRy : LREAL; // Top Right y
+	TLx : LREAL; // Top Left x  
+	TLy : LREAL; // Top Left y
+	
+	
+	(*
+		TL	_______	TR
+		|			 |
+		| XPlr Mover |
+		|			 |
+		BL	_______	BR
+
+	*)
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

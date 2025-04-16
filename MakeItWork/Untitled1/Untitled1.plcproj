@@ -18,6 +18,12 @@
     <LibraryReferences>{b85403da-8299-472f-95c3-d7ad63dadcd5}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DUTs\sMoverPoints.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\sMoverPosition.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="FastPlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>

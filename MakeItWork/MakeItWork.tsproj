@@ -3947,7 +3947,7 @@
 			</SubItem>
 		</DataType>
 		<DataType>
-			<Name IecBaseType="true">ARRAY [1..2] OF sMoverPosition</Name>
+			<Name GUID="{EA2880D5-3E01-689E-2831-D0A0C2FC9795}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..2] OF sMoverPosition</Name>
 			<BitSize>768</BitSize>
 			<BaseType GUID="{A128A741-565F-CB0A-51E0-186A510AB543}">sMoverPosition</BaseType>
 			<ArrayInfo>
@@ -13465,7 +13465,7 @@
 		</Motion>
 		<Plc>
 			<Project GUID="{1BC788B6-F295-45D5-81ED-04A2C02651AE}" Name="Untitled1" PrjFilePath="Untitled1\Untitled1.plcproj" TmcFilePath="Untitled1\Untitled1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{A31F898D-2A35-E093-CB41-40519C945CAE}" TmcPath="Untitled1\Untitled1.tmc">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{258F3093-C1CD-1C2F-B745-C67FAD60972E}" TmcPath="Untitled1\Untitled1.tmc">
 					<Name>Untitled1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1" ContextId="1" AreaNo="16">

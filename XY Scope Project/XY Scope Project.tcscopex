@@ -3093,9 +3093,9 @@
                 </PropertyUpdater>
               </SubMember>
               <Title>AngularShape_70</Title>
-              <XOffset>129.818552896552</XOffset>
+              <XOffset>180</XOffset>
               <XScalefactor>1</XScalefactor>
-              <YOffset>60</YOffset>
+              <YOffset>388.366666666667</YOffset>
               <YScalefactor>1</YScalefactor>
             </AngularShape>
             <AngularShape AssemblyName="TwinCAT.Measurement.Scope.API.Model">
@@ -3863,9 +3863,9 @@
                 </PropertyUpdater>
               </SubMember>
               <Title>AngularShape_130</Title>
-              <XOffset>110.181447103448</XOffset>
+              <XOffset>60</XOffset>
               <XScalefactor>1</XScalefactor>
-              <YOffset>420</YOffset>
+              <YOffset>91.6333333333331</YOffset>
               <YScalefactor>1</YScalefactor>
             </AngularShape>
             <AngularShape AssemblyName="TwinCAT.Measurement.Scope.API.Model">
@@ -3874,7 +3874,7 @@
               <DisplayColor>-16192</DisplayColor>
               <Guid>0a334b9f-ea17-44a2-83be-d3fd76a58ca3</Guid>
               <Name>M1 pts</Name>
-              <PointsString>(72.2028865510194 | 3.49999999999999); (185.202886551019 | 3.50000000000006); (185.202886551019 | 116.5); (72.2028865510193 | 116.5)</PointsString>
+              <PointsString>(123.5 | 330.694666666667); (236.5 | 330.694666666667); (236.5 | 443.694666666667); (123.5 | 443.694666666667)</PointsString>
               <SortPriority>100</SortPriority>
               <SubMember>
                 <ShapeStyle AssemblyName="TwinCAT.Measurement.Scope.API.Model">
@@ -4590,7 +4590,7 @@
               <DisplayColor>-4128769</DisplayColor>
               <Guid>be7312f4-0acb-4800-b75d-102e893398af</Guid>
               <Name>M2 pts</Name>
-              <PointsString>(54.7971134489806 | 363.5); (167.797113448981 | 363.5); (167.797113448981 | 476.5); (54.7971134489806 | 476.5)</PointsString>
+              <PointsString>(3.5 | 36.3053333333331); (116.5 | 36.3053333333331); (116.5 | 149.305333333333); (3.49999999999999 | 149.305333333333)</PointsString>
               <SortPriority>100</SortPriority>
               <SubMember>
                 <ShapeStyle AssemblyName="TwinCAT.Measurement.Scope.API.Model">
@@ -5382,7 +5382,7 @@
               <ShowTitle>Name</ShowTitle>
               <SortPriority>100</SortPriority>
               <SubMember />
-              <TimePosition>133893082652620000</TimePosition>
+              <TimePosition>133893082882620000</TimePosition>
               <Title>Marker</Title>
               <ValuePrecision>4</ValuePrecision>
               <Visible>false</Visible>

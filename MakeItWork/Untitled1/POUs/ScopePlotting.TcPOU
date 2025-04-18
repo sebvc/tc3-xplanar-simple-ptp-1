@@ -21,17 +21,17 @@ Main.Mover[1].MCTOPLC.ACT.ActPos.c;
 Main.Mover[2].MCTOPLC.ACT.ActPos.c;
 
 FOR i:=1 TO MAIN.MOVER_NUM DO
-	aMoverPts[i].BLx := MAIN.Mover[i].MCTOPLC.ACT.ActPos.x + diag_L*SIN(3*PI/LREAL#4 + 1 *PI/LREAL#2 - Main.Mover[i].MCTOPLC.ACT.ActPos.c);
-	aMoverPts[i].BLy := MAIN.Mover[i].MCTOPLC.ACT.ActPos.y + diag_L*COS(3*PI/LREAL#4 + 1 *PI/LREAL#2 - Main.Mover[i].MCTOPLC.ACT.ActPos.c);
-	                                                                              
-	aMoverPts[i].TLx := MAIN.Mover[i].MCTOPLC.ACT.ActPos.x + diag_L*SIN(3*PI/LREAL#4 + 2 *PI/LREAL#2 - Main.Mover[i].MCTOPLC.ACT.ActPos.c);
-	aMoverPts[i].TLy := MAIN.Mover[i].MCTOPLC.ACT.ActPos.y + diag_L*COS(3*PI/LREAL#4 + 2 *PI/LREAL#2 - Main.Mover[i].MCTOPLC.ACT.ActPos.c);
-	                                                                          
-	aMoverPts[i].TRx := MAIN.Mover[i].MCTOPLC.ACT.ActPos.x + diag_L*SIN(3*PI/LREAL#4 + 3 *PI/LREAL#2 - Main.Mover[i].MCTOPLC.ACT.ActPos.c);
-	aMoverPts[i].TRy := MAIN.Mover[i].MCTOPLC.ACT.ActPos.y + diag_L*COS(3*PI/LREAL#4 + 3 *PI/LREAL#2 - Main.Mover[i].MCTOPLC.ACT.ActPos.c);
-	                                                                            
-	aMoverPts[i].BRx := MAIN.Mover[i].MCTOPLC.ACT.ActPos.x + diag_L*SIN(3*PI/LREAL#4 + 4 *PI/LREAL#2 - Main.Mover[i].MCTOPLC.ACT.ActPos.c);
-	aMoverPts[i].BRy := MAIN.Mover[i].MCTOPLC.ACT.ActPos.y + diag_L*COS(3*PI/LREAL#4 + 4 *PI/LREAL#2 - Main.Mover[i].MCTOPLC.ACT.ActPos.c);
+	aMoverPts[i].BLx := MAIN.Mover[i].MCTOPLC.ACT.ActPos.x + diag_L*SIN(3*PI/LREAL#4 + 1 *PI/LREAL#2 - Main.Mover[i].MCTOPLC.ACT.ActPos.c*pi/LREAL#180);
+	aMoverPts[i].BLy := MAIN.Mover[i].MCTOPLC.ACT.ActPos.y + diag_L*COS(3*PI/LREAL#4 + 1 *PI/LREAL#2 - Main.Mover[i].MCTOPLC.ACT.ActPos.c*pi/LREAL#180);
+	
+	aMoverPts[i].TLx := MAIN.Mover[i].MCTOPLC.ACT.ActPos.x + diag_L*SIN(3*PI/LREAL#4 + 2 *PI/LREAL#2 - Main.Mover[i].MCTOPLC.ACT.ActPos.c*pi/LREAL#180);
+	aMoverPts[i].TLy := MAIN.Mover[i].MCTOPLC.ACT.ActPos.y + diag_L*COS(3*PI/LREAL#4 + 2 *PI/LREAL#2 - Main.Mover[i].MCTOPLC.ACT.ActPos.c*pi/LREAL#180);
+	
+	aMoverPts[i].TRx := MAIN.Mover[i].MCTOPLC.ACT.ActPos.x + diag_L*SIN(3*PI/LREAL#4 + 3 *PI/LREAL#2 - Main.Mover[i].MCTOPLC.ACT.ActPos.c*pi/LREAL#180);
+	aMoverPts[i].TRy := MAIN.Mover[i].MCTOPLC.ACT.ActPos.y + diag_L*COS(3*PI/LREAL#4 + 3 *PI/LREAL#2 - Main.Mover[i].MCTOPLC.ACT.ActPos.c*pi/LREAL#180);
+	
+	aMoverPts[i].BRx := MAIN.Mover[i].MCTOPLC.ACT.ActPos.x + diag_L*SIN(3*PI/LREAL#4 + 4 *PI/LREAL#2 - Main.Mover[i].MCTOPLC.ACT.ActPos.c*pi/LREAL#180);
+	aMoverPts[i].BRy := MAIN.Mover[i].MCTOPLC.ACT.ActPos.y + diag_L*COS(3*PI/LREAL#4 + 4 *PI/LREAL#2 - Main.Mover[i].MCTOPLC.ACT.ActPos.c*pi/LREAL#180);
 	
 END_FOR
 

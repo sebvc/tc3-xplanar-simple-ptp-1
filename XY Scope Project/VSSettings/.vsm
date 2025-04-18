@@ -110,6 +110,12 @@
               <Children />
             </Node>
             <Node>
+              <Title>i_MPO_step</Title>
+              <Expanded>False</Expanded>
+              <FileName></FileName>
+              <Children />
+            </Node>
+            <Node>
               <Title>Mover4220_1.ActPos.a</Title>
               <Expanded>False</Expanded>
               <FileName></FileName>
@@ -189,13 +195,13 @@
           <FileName></FileName>
           <Children>
             <Node>
-              <Title>Axis Group</Title>
+              <Title>XPlanar 2-Tile</Title>
               <Expanded>True</Expanded>
               <FileName></FileName>
               <Children>
                 <Node>
                   <Title>Mover4220_1.ActPos.XY</Title>
-                  <Expanded>False</Expanded>
+                  <Expanded>True</Expanded>
                   <FileName></FileName>
                   <Children>
                     <Node>
@@ -214,7 +220,7 @@
                 </Node>
                 <Node>
                   <Title>Mover4220_2.ActPos.XY</Title>
-                  <Expanded>False</Expanded>
+                  <Expanded>True</Expanded>
                   <FileName></FileName>
                   <Children>
                     <Node>
@@ -241,56 +247,7 @@
                   <Title>M1 pts</Title>
                   <Expanded>False</Expanded>
                   <FileName></FileName>
-                  <Children>
-                    <Node>
-                      <Title>Style: aMoverPts[1].BLx</Title>
-                      <Expanded>False</Expanded>
-                      <FileName></FileName>
-                      <Children />
-                    </Node>
-                    <Node>
-                      <Title>Style: aMoverPts[1].BLy</Title>
-                      <Expanded>False</Expanded>
-                      <FileName></FileName>
-                      <Children />
-                    </Node>
-                    <Node>
-                      <Title>Style: aMoverPts[1].BRx</Title>
-                      <Expanded>False</Expanded>
-                      <FileName></FileName>
-                      <Children />
-                    </Node>
-                    <Node>
-                      <Title>Style: aMoverPts[1].BRy</Title>
-                      <Expanded>False</Expanded>
-                      <FileName></FileName>
-                      <Children />
-                    </Node>
-                    <Node>
-                      <Title>Style: aMoverPts[1].TLx</Title>
-                      <Expanded>False</Expanded>
-                      <FileName></FileName>
-                      <Children />
-                    </Node>
-                    <Node>
-                      <Title>Style: aMoverPts[1].TLy</Title>
-                      <Expanded>False</Expanded>
-                      <FileName></FileName>
-                      <Children />
-                    </Node>
-                    <Node>
-                      <Title>Style: aMoverPts[1].TRx</Title>
-                      <Expanded>False</Expanded>
-                      <FileName></FileName>
-                      <Children />
-                    </Node>
-                    <Node>
-                      <Title>Style: aMoverPts[1].TRy</Title>
-                      <Expanded>False</Expanded>
-                      <FileName></FileName>
-                      <Children />
-                    </Node>
-                  </Children>
+                  <Children />
                 </Node>
                 <Node>
                   <Title>M2</Title>
@@ -302,59 +259,30 @@
                   <Title>M2 pts</Title>
                   <Expanded>False</Expanded>
                   <FileName></FileName>
-                  <Children>
-                    <Node>
-                      <Title>Style: aMoverPts[2].BLx</Title>
-                      <Expanded>False</Expanded>
-                      <FileName></FileName>
-                      <Children />
-                    </Node>
-                    <Node>
-                      <Title>Style: aMoverPts[2].BLy</Title>
-                      <Expanded>False</Expanded>
-                      <FileName></FileName>
-                      <Children />
-                    </Node>
-                    <Node>
-                      <Title>Style: aMoverPts[2].BRx</Title>
-                      <Expanded>False</Expanded>
-                      <FileName></FileName>
-                      <Children />
-                    </Node>
-                    <Node>
-                      <Title>Style: aMoverPts[2].BRy</Title>
-                      <Expanded>False</Expanded>
-                      <FileName></FileName>
-                      <Children />
-                    </Node>
-                    <Node>
-                      <Title>Style: aMoverPts[2].TLx</Title>
-                      <Expanded>False</Expanded>
-                      <FileName></FileName>
-                      <Children />
-                    </Node>
-                    <Node>
-                      <Title>Style: aMoverPts[2].TLy</Title>
-                      <Expanded>False</Expanded>
-                      <FileName></FileName>
-                      <Children />
-                    </Node>
-                    <Node>
-                      <Title>Style: aMoverPts[2].TRx</Title>
-                      <Expanded>False</Expanded>
-                      <FileName></FileName>
-                      <Children />
-                    </Node>
-                    <Node>
-                      <Title>Style: aMoverPts[2].TRy</Title>
-                      <Expanded>False</Expanded>
-                      <FileName></FileName>
-                      <Children />
-                    </Node>
-                  </Children>
+                  <Children />
                 </Node>
                 <Node>
                   <Title>Tiles</Title>
+                  <Expanded>False</Expanded>
+                  <FileName></FileName>
+                  <Children />
+                </Node>
+              </Children>
+            </Node>
+          </Children>
+        </Node>
+        <Node>
+          <Title>Digital Chart</Title>
+          <Expanded>True</Expanded>
+          <FileName></FileName>
+          <Children>
+            <Node>
+              <Title>Axis Group (1)</Title>
+              <Expanded>True</Expanded>
+              <FileName></FileName>
+              <Children>
+                <Node>
+                  <Title>i_MPO_step</Title>
                   <Expanded>False</Expanded>
                   <FileName></FileName>
                   <Children />
